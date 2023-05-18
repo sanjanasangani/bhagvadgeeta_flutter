@@ -15,7 +15,7 @@ A new Flutter project.
 <img src="https://github.com/sanjanasangani/bhagvadgeeta_flutter/assets/131368083/79b8eb44-a11d-4f93-965f-236874164565" width="220px">
 
 <img align="left" src="https://github.com/sanjanasangani/bhagvadgeeta_flutter/assets/131368083/df3e6bde-881e-4c5e-a03b-b075917afcc6" width="220px">
-<img align="left" src="https://github.com/sanjanasangani/bhagvadgeeta_flutter/assets/131368083/ca72241a-f4d2-4bb2-82a9-f4e79cc833ec)" width="220px">
+<img align="left" src="https://github.com/sanjanasangani/bhagvadgeeta_flutter/assets/131368083/ca72241a-f4d2-4bb2-82a9-f4e79cc833ec" width="220px">
 <img src="https://github.com/sanjanasangani/bhagvadgeeta_flutter/assets/131368083/1b8a070f-1399-4671-9251-ac6ff5598d45" width="220px">
 
 
