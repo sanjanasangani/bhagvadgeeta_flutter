@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/slok_models.dart';
+import '../../providers/Theme_Providers.dart';
 import '../../utils/listslok.dart';
 
 class homepage extends StatefulWidget {
@@ -45,6 +47,14 @@ class _homepageState extends State<homepage> {
           ),
         ),
         backgroundColor: Colors.brown,
+        actions: [
+          Switch(
+          onChanged: (val) {
+    Provider.of<ThemeProvider>(context, listen: false).ChangeTheme();
+    },
+      value: Provider.of<ThemeProvider>(context).themeModel.isDark,
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: sloks.length,

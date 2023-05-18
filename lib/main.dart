@@ -1,36 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:geeta/providers/Theme_Providers.dart';
+import 'package:geeta/utils/app_themes.dart';
 import 'package:geeta/views/screens/detailspage.dart';
 import 'package:geeta/views/screens/homepage.dart';
-//import 'package:geeta/views/screens/slok1.dart';
 import 'package:geeta/views/screens/slokpage.dart';
 import 'package:geeta/views/screens/splash_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'Models/Theme_Modals.dart';
+import 'package:geeta/utils/app_themes.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  bool isDarkTheme = prefs.getBool('isDark') ?? false;
+
   runApp(
-    MyApp(),
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) =>
+              ThemeProvider(themeModel: ThemeModel(isDark: isDarkTheme))),
+        ],
+        builder: (context, _) {
+          return MaterialApp(
+            theme: AppThemes.lightTheme,
+            darkTheme: AppThemes.darkTheme,
+            themeMode:
+            (Provider.of<ThemeProvider>(context).themeModel.isDark == true)
+                ? ThemeMode.light
+                : ThemeMode.dark,
+            debugShowCheckedModeBanner: false,
+            routes: {
+              '/': (context) => SplashScreen(),
+              'homepage': (context) => homepage(),
+              'slokpage': (context) => Slokpage(),
+              'detailspage': (context) => detailspage(),
+            },
+          );
+        },
+      )
   );
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/': (context) => SplashScreen(),
-        'homepage': (context) => homepage(),
-        'slokpage': (context) => Slokpage(),
-        //'slokpage1':(context) => slokpage1(),
-        'detailspage':(context)=>detailspage(),
-      },
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
-    );
-  }
-}

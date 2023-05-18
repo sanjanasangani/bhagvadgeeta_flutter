@@ -41,7 +41,7 @@ class _SlokpageState extends State<Slokpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("${bhagvadgeeta[index]['name']}",),
+        title: Text("${bhagvadgeeta[index]['name']}",style: TextStyle(color: Colors.brown.shade700),),
         backgroundColor: Colors.orange.shade50,
         elevation: 0,
       ),
@@ -69,7 +69,7 @@ class _SlokpageState extends State<Slokpage> {
                 padding: const EdgeInsets.all(16),
                 child: ListTile(
                   onTap: () {},
-                  leading: Text("${sloks[index].chapter_summary_hindi}"),
+                  leading: Text("${sloks[index].chapter_summary_hindi}",style: TextStyle(color: Colors.brown.shade700),),
                 ),
               ),
             ),
@@ -98,8 +98,8 @@ class _SlokpageState extends State<Slokpage> {
                               arguments: sloks1[i],
                             );
                           },
-                          leading: Text("${sloks1[i].verse}"),
-                          title: Text("${sloks1[i].san}"),
+                          leading: Text("${sloks1[i].verse}",style: TextStyle(color: Colors.brown.shade700),),
+                          title: Text("${sloks1[i].san}",style: TextStyle(color: Colors.brown.shade700),),
                         ),
                       ),
                     ),
