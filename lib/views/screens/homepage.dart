@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geeta/utils/route_utils.dart';
+import 'package:geeta/views/screens/slokpage.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/slok_models.dart';
@@ -36,8 +38,10 @@ class _homepageState extends State<homepage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.menu,
-          color: Colors.white,),
+          icon: Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
           onPressed: () {},
         ),
         title: Text(
@@ -49,10 +53,10 @@ class _homepageState extends State<homepage> {
         backgroundColor: Colors.brown,
         actions: [
           Switch(
-          onChanged: (val) {
-    Provider.of<ThemeProvider>(context, listen: false).ChangeTheme();
-    },
-      value: Provider.of<ThemeProvider>(context).themeModel.isDark,
+            onChanged: (val) {
+              Provider.of<ThemeProvider>(context, listen: false).ChangeTheme();
+            },
+            value: Provider.of<ThemeProvider>(context).themeModel.isDark,
           )
         ],
       ),
@@ -63,10 +67,23 @@ class _homepageState extends State<homepage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              onTap: () {
+              onTap: () async {
                 index = i;
-                Navigator.of(context).pushNamed('slokpage');
+
+                String? data;
+                String? data1;
+
+                data = await rootBundle.loadString('${bhagvadgeeta[index]['json']}');
+                data1 = await rootBundle.loadString('${bhagvadgeeta[index]['json1']}');
+
                 setState(() {});
+                List decodeList = jsonDecode(data);
+                sloks = decodeList.map((e) => slok.fromMap(data: e)).toList();
+
+                List decodeList1 = jsonDecode(data1);
+                sloks1 = decodeList1.map((e) => slok1.fromMap(data: e)).toList();
+
+                Navigator.of(context).pushNamed(MyRoutes.slockPage);
               },
               leading: Text("${sloks[i].id}"),
               title: Text("${sloks[i].name}"),

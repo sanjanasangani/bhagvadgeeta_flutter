@@ -6,7 +6,7 @@ class ThemeProvider extends ChangeNotifier {
   ThemeModel themeModel;
   ThemeProvider({
     required this.themeModel,
-});
+  });
 
   ChangeTheme() async {
     themeModel.isDark = !themeModel.isDark;
@@ -17,4 +17,3 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
-
